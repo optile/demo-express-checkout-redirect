@@ -1,0 +1,23 @@
+{
+  "name": "demo-express-checkout-redirect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified, but no problem\" && exit 0",
+    "start": "http-server -p 3000 ./",
+    "build": "node ./build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-checkout": "^1.0.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "fs-extra": "^8.1.0",
+    "http-server": "^0.12.1"
+  }
+}
