@@ -6,13 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified, but no problem\" && exit 0",
     "start": "http-server -p 3000 ./",
-    "build": "node ./build"
+    "onlybuild": "node ./build",
+    "build": "npm run onlybuild",
+    "ghpages": "gh-pages -d build",
+    "postbuild": "npm run ghpages"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express-checkout": "^1.0.4",
+    "gh-pages": "^2.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
