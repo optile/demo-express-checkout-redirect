@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified, but no problem\" && exit 0",
+    "copyVendors": "node ./localBuild",
+    "prestart": "npm run copyVendors",
     "start": "http-server -p 3000 ./",
+    "preonlybuild": "npm run copyVendors",
     "onlybuild": "node ./build",
     "build": "npm run onlybuild",
     "ghpages": "gh-pages -d build",

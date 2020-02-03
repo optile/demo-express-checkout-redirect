@@ -33,11 +33,12 @@
       <p>Please confirm the payment</p>
       <div id="container"></div>
     </div>
-
-    <script src="node_modules/react/umd/react.production.min.js"></script>
-    <script src="node_modules/react-dom/umd/react-dom.production.min.js"></script>
+    <!--using vendors directory and not node_modules, bcz I had issues with github pages
+  For your normal application, it is recommended to use it from node_modules to get the updated version all the time-->
+    <script src="vendors/react.production.min.js"></script>
+    <script src="vendors/react-dom.production.min.js"></script>
     <!-- use minified for production-->
-    <script src="node_modules/express-checkout/umd/express-checkout.js"></script>
+    <script src="vendors/express-checkout.js"></script>
     <script src="config.js"></script>
     <script>
       function getParameterByName(name, url) {
