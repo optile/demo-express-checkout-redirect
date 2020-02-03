@@ -41,18 +41,10 @@
     <script src="vendors/express-checkout.js"></script>
     <script src="config.js"></script>
     <script>
-      function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-          results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return "";
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-      }
-      // window.attributes comes from config.js
+      // window.attr comes from config.js
       function showExpressCheckout(container) {
         var error = false;
+        // getParameterByName available in config.js
         var longId = getParameterByName("longId");
         if (container === null) {
           // container is wrong and in this case, express-checkout will not load
@@ -71,13 +63,13 @@
           );
           error = true;
         }
-        if (!attributes.configuration) {
+        if (!attr.configuration) {
           console.error(
             "Express Checkout needs configuration object to be passed"
           );
           error = true;
         }
-        if (!attributes.createTransactionDetails) {
+        if (!attr.createTransactionDetails) {
           console.error(
             "Express Checkout needs createTransactionDetails function to be passed"
           );
@@ -88,9 +80,9 @@
         }
         //window.optileExpressCheckout comes from express-checkout
         var expressCheckout = window.optileExpressCheckout({
-          configuration: attributes.configuration,
-          createTransactionDetails: attributes.createTransactionDetails,
-          customFunctions: attributes.customFunctions,
+          configuration: attr.configuration,
+          createTransactionDetails: attr.createTransactionDetails,
+          customFunctions: attr.customFunctions,
           mode: "Summary",
           longId: longId
         });

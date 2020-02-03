@@ -26,7 +26,7 @@
     <script src="vendors/express-checkout.js"></script>
     <script src="config.js"></script>
     <script>
-      // window.attributes comes from config.js
+      // window.attr comes from config.js
       function showExpressCheckout(container) {
         var error = false;
         if (container === null) {
@@ -46,13 +46,13 @@
           );
           error = true;
         }
-        if (!attributes.configuration) {
+        if (!attr.configuration) {
           console.error(
             "Express Checkout needs configuration object to be passed"
           );
           error = true;
         }
-        if (!attributes.createTransactionDetails) {
+        if (!attr.createTransactionDetails) {
           console.error(
             "Express Checkout needs createTransactionDetails function to be passed"
           );
@@ -63,9 +63,9 @@
         }
         //window.optileExpressCheckout comes from express-checkout
         var expressCheckout = window.optileExpressCheckout({
-          configuration: attributes.configuration,
-          createTransactionDetails: attributes.createTransactionDetails,
-          customFunctions: attributes.customFunctions
+          configuration: attr.configuration,
+          createTransactionDetails: attr.createTransactionDetails,
+          customFunctions: attr.customFunctions
         });
 
         ReactDOM.render(expressCheckout, container);
