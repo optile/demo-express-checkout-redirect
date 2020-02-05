@@ -8,6 +8,8 @@ This Demo shop is to represent the UMD redirect implementation of Express Checko
 
 ## Steps to run demo
 
+`npm install --save express-checkout@latest --registry https://packagecloud.io/optile/javascript/npm/`
+
 `npm install`
 
 `npm start`
