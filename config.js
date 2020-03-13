@@ -2,7 +2,7 @@ var attributes = {
   local: {
     configuration: {
       baseURL: "https://api.integration.oscato.com/pci/v1/express",
-      clientId: "v1.opt-div-app.1b293aa844de46d4860da0ad5d29f0fe",
+      clientId: "v1.opt-div-app.12f635a01fa648b4bbe89d6005f30e95",
       country: "US",
       language: "en_US",
       translation: [
@@ -57,7 +57,7 @@ var attributes = {
   integration: {
     configuration: {
       baseURL: "https://api.integration.oscato.com/pci/v1/express",
-      clientId: "v1.opt-div-app.2e172a46c87245a8804ac938603d5b12",
+      clientId: "v1.opt-div-app.e65abdfa3b6d4ba2b3dbb316071914be",
       country: "US",
       language: "en_US",
       translation: [
