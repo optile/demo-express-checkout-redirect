@@ -16,6 +16,8 @@ This Demo shop is to represent the UMD redirect implementation of Express Checko
 
 Open <http://localhost:3000/>
 
+Live Demo - <https://optile.github.io/demo-express-checkout-redirect>
+
 <br/>
 <br/>
 
