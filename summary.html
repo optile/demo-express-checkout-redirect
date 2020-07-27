@@ -18,6 +18,16 @@
         margin: 4px 2px;
         cursor: pointer;
       }
+      .details {
+        display: flex;
+        justify-content: center;
+      }
+      #address,
+      #billing {
+        text-align: left;
+        padding-right: 30px;
+        padding-left: 10px;
+      }
     </style>
       <script src="https://polyfill.io/v3/polyfill.min.js?features=Symbol%2CSymbol.asyncIterator%2CSymbol.for%2CSymbol.hasInstance%2CSymbol.isConcatSpreadable%2CSymbol.iterator%2CSymbol.keyFor%2CSymbol.match%2CSymbol.prototype.description%2CSymbol.replace%2CSymbol.search%2CSymbol.species%2CSymbol.split%2CSymbol.toPrimitive%2CSymbol.toStringTag%2CSymbol.unscopables%2CArray.from%2CObject.assign%2Cfetch%2CPromise%2CPromise.prototype.finally"></script>
   </head>
@@ -30,6 +40,19 @@
     <br />
     <div align="center">
       <h1>My legacy shop</h1>
+      <div class="details">
+        <div id="address" hidden>
+          <h3>Shipping Address:</h3>
+          <div id="name"></div>
+          <div id="street"></div>
+          <div id="city"></div>
+          <div id="zip"></div>
+        </div>
+        <div id="billing" hidden>
+          <h3>Billing Information:</h3>
+          <div id="networks"></div>
+        </div>
+      </div>
       <br />
       <p>Please confirm the payment</p>
       <div id="container"></div>
@@ -41,6 +64,9 @@
     <!-- use minified for production-->
     <script src="vendors/express-checkout.js"></script>
     <script src="config.js"></script>
+    <script src="server/utils/index.js"></script>
+    <script src="server/network/index.js"></script>
+    <script src="server/getExpressPreset.js"></script>
     <script>
       // window.attr comes from config.js
       function showExpressCheckout(container) {
@@ -91,6 +117,35 @@
         ReactDOM.render(expressCheckout, container);
       }
       showExpressCheckout(document.getElementById("container"));
+    </script>
+    <script>
+      function summaryDetails(address) {
+        var addressDiv = document.getElementById("address");
+        var nameDiv = document.getElementById("name");
+        var street = document.getElementById("street");
+        var city = document.getElementById("city");
+        var zip = document.getElementById("zip");
+        var name = address && address.name;
+        nameDiv.innerText = name ? name.firstName + " " + name.lastName : "";
+        street.innerText = address && address.street;
+        city.innerText = address ? address.city + " " + address.country : "";
+        zip.innerText = address && address.zip;
+        addressDiv.removeAttribute("hidden");
+      }
+      function billingDetails(network) {
+        var billing = document.getElementById("billing");
+        var networks = document.getElementById("networks");
+        networks.innerText = network;
+        billing.removeAttribute("hidden");
+      }
+      function successCb(data) {
+        summaryDetails(data.customerCollectedDetails.addresses.shipping);
+        billingDetails(data.network);
+      }
+      function errorCb(error) {
+        console.error(error);
+      }
+      getExpressPreset(successCb, errorCb);
     </script>
   </body>
 </html>
