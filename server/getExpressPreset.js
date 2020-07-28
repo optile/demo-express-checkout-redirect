@@ -6,7 +6,7 @@ function getExpressPreset(successCb, errorCb) {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            Authorization,
+            Authorization: Authorization,
         },
     };
     fetchData(baseURL, options)

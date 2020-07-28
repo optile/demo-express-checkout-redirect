@@ -9,7 +9,7 @@ function fetchData(url, options) {
                     response: {
                         ok: true,
                     },
-                    data,
+                    data: data,
                 };
             })
             .catch(function (error) {
@@ -38,9 +38,14 @@ function fetchData(url, options) {
     }
 }
 
-function sendData({ url, method, body, headers }) {
+function sendData(params) {
+    var url = params.url;
+    var method = params.method;
+    var body = params.body;
+    var headers = params.headers;
+
     return fetchData(url, {
-        method,
+        method: method,
         mode: "cors",
         cache: "default",
         redirect: "follow",
