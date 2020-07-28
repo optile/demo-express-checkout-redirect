@@ -1,6 +1,6 @@
 function charge(url, callback) {
     sendData({
-        url,
+        url: url,
         method: "POST",
         body: {},
         headers: {
