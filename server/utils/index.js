@@ -9,5 +9,5 @@ function getPresetLink(longId) {
 }
 
 function getAuthorization() {
-    return "Basic " + btoa("555:b348k9ho52e57lmksjl3um438k1e50cde1tbmlekrd");
+    return "Basic " + btoa(MERCHANT.USER + ":" + MERCHANT.TOKEN);
 }
