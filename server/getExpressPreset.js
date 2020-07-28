@@ -13,10 +13,10 @@ function getExpressPreset(successCb, errorCb) {
         .then(function (result) {
             var response = result.response;
             if (response.ok) {
-				successCb(result.data);
-			} else errorCb(result.error);
+                successCb(result.data);
+            } else errorCb(result.error);
         })
         .catch(function (error) {
-			errorCb(error);
-		});
+            errorCb(error);
+        });
 }

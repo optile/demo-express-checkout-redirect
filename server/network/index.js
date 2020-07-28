@@ -1,29 +1,29 @@
 function fetchData(url, options) {
     try {
-		return fetch(url, options)
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(data) {
-			return {
-				response: {
-					ok: true,
-				},
-				data,
-			};
-		})
-		.catch(function(error) {
-			return {
-				response: {
-					ok: false,
-				},
-				error: {
-					message: error.message,
-					status: error.status,
-					statusText: error.statusText,
-				},
-			};
-		});
+        return fetch(url, options)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                return {
+                    response: {
+                        ok: true,
+                    },
+                    data,
+                };
+            })
+            .catch(function (error) {
+                return {
+                    response: {
+                        ok: false,
+                    },
+                    error: {
+                        message: error.message,
+                        status: error.status,
+                        statusText: error.statusText,
+                    },
+                };
+            });
     } catch (error) {
         return {
             response: {
