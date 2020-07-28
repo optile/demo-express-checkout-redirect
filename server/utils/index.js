@@ -5,7 +5,7 @@ function getLongId() {
 
 function getPresetLink(longId) {
     var baseURL = attr.configuration.baseURL;
-    return `${baseURL.replace("pci/v1/express", "api/presets")}/${longId}`;
+    return baseURL.replace("pci/v1/express", "api/presets") + "/" + longId;
 }
 
 function getAuthorization() {
