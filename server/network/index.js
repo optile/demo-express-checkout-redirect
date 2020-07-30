@@ -5,15 +5,15 @@ function fetchData(url, options) {
                 return response.json();
             })
             .then(function (data) {
-                return {
+                return Promise.resolve({
                     response: {
                         ok: true,
                     },
                     data: data,
-                };
+                });
             })
             .catch(function (error) {
-                return {
+                return Promise.reject({
                     response: {
                         ok: false,
                     },
@@ -22,10 +22,10 @@ function fetchData(url, options) {
                         status: error.status,
                         statusText: error.statusText,
                     },
-                };
+                });
             });
     } catch (error) {
-        return {
+        return Promise.reject({
             response: {
                 ok: false,
             },
@@ -34,7 +34,7 @@ function fetchData(url, options) {
                 status: error.status,
                 statusText: error.statusText,
             },
-        };
+        });
     }
 }
 
