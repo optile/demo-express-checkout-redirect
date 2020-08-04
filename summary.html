@@ -1,96 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>My legacy shop</title>
-    <style>
-      .payments-summary-confirm-button {
-        background-color: #4caf50;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.42/polyfill.min.js"></script>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>My legacy shop</title>
+        <style>
+            .payments-summary-confirm-button {
+                background-color: #4caf50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+            .details {
+                display: flex;
+                justify-content: center;
+            }
+            #address,
+            #billing {
+                text-align: left;
+                padding-right: 30px;
+                padding-left: 10px;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.42/polyfill.min.js"></script>
+    </head>
 
-  <body>
-    <div>
-      <a href="./index.html">Home</a>
-    </div>
-    <br />
-    <br />
-    <div align="center">
-      <h1>My legacy shop</h1>
-      <br />
-      <p>Please confirm the payment</p>
-      <div id="container"></div>
-    </div>
-    <!--using vendors directory and not node_modules, bcz I had issues with github pages
-  For your normal application, it is recommended to use it from node_modules to get the updated version all the time-->
-    <script src="vendors/react.production.min.js"></script>
-    <script src="vendors/react-dom.production.min.js"></script>
-    <!-- use minified for production-->
-    <script src="vendors/express-checkout.js"></script>
-    <script src="config.js"></script>
-    <script>
-      // window.attr comes from config.js
-      function showExpressCheckout(container) {
-        var error = false;
-        // getParameterByName available in config.js
-        var longId = getParameterByName("longId");
-        if (container === null) {
-          // container is wrong and in this case, express-checkout will not load
-          console.error("Express Checkout needs a correct container");
-          error = true;
-        }
-        if (!ReactDOM) {
-          // should exist if react and react-dom are loaded correctly
-          console.error("Express Checkout needs react and react-dom");
-          error = true;
-        }
-        if (!optileExpressCheckout) {
-          // should exist if react and react-dom are loaded correctly
-          console.error(
-            "Express Checkout function (optileExpressCheckout) is not available, make sure to load the dependency"
-          );
-          error = true;
-        }
-        if (!attr.configuration) {
-          console.error(
-            "Express Checkout needs configuration object to be passed"
-          );
-          error = true;
-        }
-        if (!attr.createTransactionDetails) {
-          console.error(
-            "Express Checkout needs createTransactionDetails function to be passed"
-          );
-          error = true;
-        }
-        if (error) {
-          return; // don't try to run optileExpressCheckout when mandatory dependency or attribute is missing
-        }
-        //window.optileExpressCheckout comes from express-checkout
-        var expressCheckout = window.optileExpressCheckout({
-          configuration: attr.configuration,
-          createTransactionDetails: attr.createTransactionDetails,
-          customFunctions: attr.customFunctions,
-          mode: "Summary",
-          longId: longId
-        });
+    <body>
+        <div>
+            <a href="./index.html">Home</a>
+        </div>
+        <br />
+        <br />
+        <div align="center">
+            <h1>My legacy shop</h1>
+            <div class="details">
+                <div id="address" hidden>
+                    <h3>Shipping Address:</h3>
+                    <div id="name"></div>
+                    <div id="street"></div>
+                    <div id="city"></div>
+                    <div id="zip"></div>
+                </div>
+                <div id="billing" hidden>
+                    <h3>Billing Information:</h3>
+                    <div id="networks"></div>
+                </div>
+            </div>
+            <br />
+            <p>Please confirm the payment</p>
+            <div id="container"></div>
+        </div>
+        <!--using vendors directory and not node_modules, bcz I had issues with github pages
+        For your normal application, it is recommended to use it from node_modules to get the updated version all the time-->
+        <script src="vendors/react.production.min.js"></script>
+        <script src="vendors/react-dom.production.min.js"></script>
+        <!-- use minified for production-->
+        <script src="vendors/express-checkout.js"></script>
+        <script src="config.js"></script>
+        <script src="server/constants/index.js"></script>
+        <script src="server/utils/index.js"></script>
+        <script src="server/network/index.js"></script>
+        <script src="server/getExpressPreset.js"></script>
+        <script>
+            // window.attr comes from config.js
+            function showExpressCheckout(container) {
+                var error = false;
+                // getParameterByName available in config.js
+                var longId = getParameterByName("longId");
+                if (container === null) {
+                    // container is wrong and in this case, express-checkout will not load
+                    console.error("Express Checkout needs a correct container");
+                    error = true;
+                }
+                if (!ReactDOM) {
+                    // should exist if react and react-dom are loaded correctly
+                    console.error("Express Checkout needs react and react-dom");
+                    error = true;
+                }
+                if (!optileExpressCheckout) {
+                    // should exist if react and react-dom are loaded correctly
+                    console.error("Express Checkout function (optileExpressCheckout) is not available, make sure to load the dependency");
+                    error = true;
+                }
+                if (!attr.configuration) {
+                    console.error("Express Checkout needs configuration object to be passed");
+                    error = true;
+                }
+                if (!attr.createTransactionDetails) {
+                    console.error("Express Checkout needs createTransactionDetails function to be passed");
+                    error = true;
+                }
+                if (error) {
+                    return; // don't try to run optileExpressCheckout when mandatory dependency or attribute is missing
+                }
+                //window.optileExpressCheckout comes from express-checkout
+                var expressCheckout = window.optileExpressCheckout({
+                    configuration: attr.configuration,
+                    createTransactionDetails: attr.createTransactionDetails,
+                    customFunctions: attr.customFunctions,
+                    mode: "Summary",
+                    longId: longId,
+                });
 
-        ReactDOM.render(expressCheckout, container);
-      }
-      showExpressCheckout(document.getElementById("container"));
-    </script>
-  </body>
+                ReactDOM.render(expressCheckout, container);
+            }
+            showExpressCheckout(document.getElementById("container"));
+        </script>
+        <script>
+            function summaryDetails(address) {
+                var addressDiv = document.getElementById("address");
+                var nameDiv = document.getElementById("name");
+                var street = document.getElementById("street");
+                var city = document.getElementById("city");
+                var zip = document.getElementById("zip");
+                var name = address && address.name;
+                nameDiv.innerText = name ? name.firstName + " " + name.lastName : "";
+                street.innerText = address && address.street;
+                city.innerText = address ? address.city + " " + address.country : "";
+                zip.innerText = address && address.zip;
+                addressDiv.removeAttribute("hidden");
+            }
+            function billingDetails(network) {
+                var billing = document.getElementById("billing");
+                var networks = document.getElementById("networks");
+                networks.innerText = network;
+                billing.removeAttribute("hidden");
+            }
+            function successCb(data) {
+                summaryDetails(data.customerCollectedDetails.addresses.shipping);
+                billingDetails(data.network);
+            }
+            function errorCb(error) {
+                console.error(error);
+            }
+            getExpressPreset(successCb, errorCb);
+        </script>
+    </body>
 </html>

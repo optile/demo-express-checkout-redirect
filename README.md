@@ -5,7 +5,6 @@ This Demo shop is to represent the UMD redirect implementation of Express Checko
 <br/>
 <br/>
 
-
 ## Steps to run demo
 
 `npm install --save express-checkout@latest --registry https://packagecloud.io/optile/javascript/npm/`
@@ -22,6 +21,7 @@ Live Demo - <https://optile.github.io/demo-express-checkout-redirect>
 <br/>
 
 ---
+
 <br/>
 <br/>
 
@@ -30,4 +30,3 @@ Live Demo - <https://optile.github.io/demo-express-checkout-redirect>
 `npm install`
 
 `npm run onlybuild`
-
