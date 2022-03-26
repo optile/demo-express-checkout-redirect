@@ -26,6 +26,6 @@
     "devDependencies": {
         "fs-extra": "^8.1.0",
         "http-server": "^0.12.1",
-        "minimist": "^1.2.5"
+        "minimist": "^1.2.6"
     }
 }
