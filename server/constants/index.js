@@ -9,14 +9,14 @@
 var constants = {
     local: {
         MERCHANT: {
-            USER: "555",
-            TOKEN: "b348k9ho52e57lmksjl3um438k1e50cde1tbmlekrd",
+            USER: "OPP",
+            TOKEN: "3d6810q5vgkvvfja3ahin1lue4nmk7sk4gfphn1c",
         },
     },
-    integration: {
+    "pi-nightly": {
         MERCHANT: {
-            USER: "555",
-            TOKEN: "b348k9ho52e57lmksjl3um438k1e50cde1tbmlekrd",
+            USER: "OPP",
+            TOKEN: "3d6810q5vgkvvfja3ahin1lue4nmk7sk4gfphn1c",
         },
     },
 };
@@ -25,5 +25,5 @@ var MERCHANT;
 if (window.location.hostname === "localhost") {
     MERCHANT = constants.local.MERCHANT;
 } else {
-    MERCHANT = constants.integration.MERCHANT;
+    MERCHANT = constants["pi-nightly"].MERCHANT;
 }
