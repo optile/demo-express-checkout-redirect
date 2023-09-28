@@ -1,3 +1,8 @@
+# ❗ Archived
+
+This project has been discontinued and archived since 28th September 2023. There is a new version of the demo application available
+at https://github.com/optile/op-demo-shop.
+
 # Express Checkout Redirect Demo
 
 This Demo shop is to represent the UMD redirect implementation of Express Checkout <https://github.com/optile/express-checkout>
