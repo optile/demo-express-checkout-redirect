@@ -1,6 +1,6 @@
 # ❗ Archived
 
-This project has been discontinued and archived since 28th September 2023. There is a new version of the demo application available
+This project has been discontinued. There is a new version of the demo application available
 at https://github.com/optile/op-demo-shop.
 
 # Express Checkout Redirect Demo
